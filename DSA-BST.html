@@ -150,85 +150,124 @@
   numberTree.insert(2, 2)
   numberTree.insert(5, 5)
   numberTree.insert(7, 7)
-  console.log(numberTree)
+  // console.log(numberTree)
 
-  function tree(t) {
-    if (!t) {
-      return 0;
+  // function tree(t) {
+  //   if (!t) {
+  //     return 0;
+  //   }
+  //   return tree(t.left) + t.value + tree(t.right)
+  // }
+
+  // console.log(tree(numberTree));
+
+  // function height(t) {
+  //   if (!t) { return 0 };
+  //   const left = height(t.left)
+  //   const right = height(t.right)
+  //   if (left > right) return left + 1;
+  //   else return right + 1;
+  // }
+
+  // console.log(height(numberTree));
+
+  // function bstCheck(tree) {
+
+  //   let last_logged;
+
+  //   if (tree === null) { // base case
+  //     return true;
+  //   }
+
+  //   // Verify and recurse left
+  //   if (!bstCheck(tree.left)) {
+  //     return false;
+  //   }
+
+  //   // Verify the current node
+  //   if (last_logged !== null && tree.data <= last_logged) {
+  //     return false;
+  //   }
+
+  //   // Log the current data for debugging and update the last_logged
+  //   console.log('Current Node : ', tree.data);
+  //   last_logged = tree.data;
+
+  //   // Verify and recurse left
+  //   if (!bstCheck(tree.right)) {
+  //     return false;
+  //   }
+
+  //   return true;
+  // }
+
+  // console.log(bstCheck(numberTree))
+
+  // function thirdLargest(t) {
+  //   const arr = [];
+  //   const check = (t) => {
+  //     if (!t) return
+  //     arr.push(t.key);
+  //     check(t.left);
+  //     check(t.right);
+  //   }
+  //   check(t);
+  //   arr.sort();
+  //   return arr[arr.length - 3];
+  // }
+
+  // function thirdLargestTwo(t, largest = 0) {
+  //   if (!t) return;
+  //   console.log(t.value)
+  //   if (!t.right) {
+  //     console.log("tree", t, largest)
+  //     if (t.left) {
+  //       return thirdLargestTwo(t.left, largest + 1)
+  //     }
+  //     else {
+  //       return largest + 1
+  //     }
+  //   }
+  //   x = thirdLargestTwo(t.right, largest)
+  //   if (x == 3) {
+  //     console.log('found', t)
+  //   }
+  //   if (t.left) {
+  //     x = thirdLargestTwo(t.left, largest)
+  //   }
+  //   console.log(t.value, x)
+  //   if (x == 3) {
+  //     console.log('found', t)
+  //   }
+  //   return x + 1
+  // }
+  const counter = { c: 0 }
+  function largest(t, k) {
+    if (!t || counter.c > k) {
+      return
     }
-    return tree(t.left) + t.value + tree(t.right)
+    largest(t.right, k)
+    counter.c++
+    if (counter.c == k) {
+      console.log('found', t.value)
+    }
+    largest(t.left, k)
   }
+  console.log(largest(numberTree, 9));
+  // function checkBalanced(t) {
+  //   if (!t) { return 0 };
+  //   let nodeLeft = t.left
+  //   let nodeRight = t.right
+  //   let leftHeight
+  //   let rightHeight
+  //   checkBalanced(t.left);
+  //   leftHeight += 1
+  //   checkBalanced(t.right);
+  //   rightHeight += 1
+  //   console.log(leftHeight, rightHeight)
+  // }
 
-  console.log(tree(numberTree));
-
-  function height(t) {
-    if (!t) { return 0 };
-    if (height(t.left) > height(t.right)) return height(t.left) + 1;
-    else return height(t.right) + 1;
-  }
-
-  console.log(height(numberTree));
-
-  function bstCheck(tree) {
-
-    let last_logged;
-
-    if (tree === null) { // base case
-      return true;
-    }
-
-    // Verify and recurse left
-    if (!bstCheck(tree.left)) {
-      return false;
-    }
-
-    // Verify the current node
-    if (last_logged !== null && tree.data <= last_logged) {
-      return false;
-    }
-
-    // Log the current data for debugging and update the last_logged
-    console.log('Current Node : ', tree.data);
-    last_logged = tree.data;
-
-    // Verify and recurse left
-    if (!bstCheck(tree.right)) {
-      return false;
-    }
-
-    return true;
-  }
-
-  console.log(bstCheck(numberTree))
-
-  function thirdLargest(t) {
-    const arr = [];
-    const check = (t) => {
-      if (!t) return
-      arr.push(t.key);
-      check(t.left);
-      check(t.right);
-    }
-    check(t);
-    arr.sort();
-    return arr[arr.length - 3];
-  }
-  console.log(thirdLargest(numberTree));
-
-  function checkBalanced(t) {
-    if (!t) { return 0 };
-    let nodeLeft = t.left
-    let nodeRight = t.right
-    let leftHeight
-    let rightHeight
-    checkBalanced(t.left);
-    leftHeight += 1
-    checkBalanced(t.right);
-    rightHeight += 1
-    console.log(leftHeight, rightHeight)
-  }
-
-  console.log(checkBalanced(numberTree));
+  // console.log(checkBalanced(numberTree));
 
 
 </script>
